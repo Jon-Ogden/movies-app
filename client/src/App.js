@@ -32,11 +32,11 @@ function App() {
     }
   };
   function remove(id){
-    movies.forEach((current, index) => {
-      if(current.id == id){
-          movies.splice(index, 1)
-      }
+    let movie = movies.filter((current)=>{
+      return id !== current.id
     })
+    setMovies(movie)
+    axios.delete(`/api/movies/${id}`)
   }
 
   const renderMovies = () => {
