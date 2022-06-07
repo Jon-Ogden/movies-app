@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
+import MovieForm from "./MovieForm";
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
       setMovies(res.data);
       setLoading(false);
     } catch (err) {
-      // check
+      
       alert('error occured')
       setError(err);
       setLoading(false);
