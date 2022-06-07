@@ -31,6 +31,13 @@ function App() {
       setLoading(false);
     }
   };
+  function remove(id){
+    movies.forEach((current, index) => {
+      if(current.id == id){
+          movies.splice(index, 1)
+      }
+    })
+  }
 
   const renderMovies = () => {
     if (loading) {
@@ -43,6 +50,7 @@ function App() {
       return (
         <div key={m.id} style={{margin:'20px', border:'1px solid', color:'lightblue'}}>
           <h1>{m.name}: {m.year}</h1>
+          <button onClick={() => remove(m.id)}>delete</button>
         </div>
       )
     })
