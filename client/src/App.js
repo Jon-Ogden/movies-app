@@ -14,6 +14,18 @@ function App() {
     getMovies();
   }, []);
 
+  const editMovies = (updatedMovies) => {
+    let newMovies = [...movies]
+    const editedMovies = newMovies.map((m) => {
+      if (m.id !== updatedMovies.id) 
+      {return m} else {
+        return updatedMovies;
+      }
+    });
+    setMovies(editedMovies)
+    axios.put(`/api/movies/${updatedMovies.id}`)
+  }
+
   const addMovie = (movie)=>{
     setMovies([movie, ...movies])
   }
@@ -38,6 +50,7 @@ function App() {
     setMovies(movie)
     axios.delete(`/api/movies/${id}`)
   }
+  
 
   const renderMovies = () => {
     if (loading) {
@@ -50,7 +63,7 @@ function App() {
       return (
         <div key={m.id} style={{margin:'20px', border:'1px solid', color:'lightblue'}}>
           <h1>{m.name}: {m.year}</h1>
-          <button onClick={() => remove(m.id)}>delete</button>
+          <button onClick={() => remove(m.id)}>Delete</button>
         </div>
       )
     })
