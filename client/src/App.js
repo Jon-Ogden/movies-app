@@ -42,7 +42,7 @@ function App() {
    return movies.map(m=>{
       return (
         <div key={m.id} style={{margin:'20px', border:'1px solid', color:'lightblue'}}>
-          <h1>{m.name}: ${m.year}</h1>
+          <h1>{m.name}: {m.year}</h1>
         </div>
       )
     })

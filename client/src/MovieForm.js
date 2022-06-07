@@ -3,7 +3,7 @@ import { useState } from "react"
 
 const MovieForm = (props)=>{
     const [name, setName] = useState('')
-    const [year, setYear] = useState(0)
+    const [year, setYear] = useState(null)
 
     const handleSubmit = async(e)=>{
         e.preventDefault()
