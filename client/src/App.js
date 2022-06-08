@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import MovieForm from "./MovieForm";
+import UpdateForm from "./UpdateForm";
 
 
 function App() {
   const [movies, setMovies] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [show, setShow] = useState(true)
 
   useEffect(() => {
     getMovies();
@@ -59,24 +61,36 @@ function App() {
     if (error) {
       return <p>{JSON.stringify(error)}</p>;
     }
-   return movies.map(m=>{
-      return (
-        <div key={m.id} style={{margin:'20px', border:'1px solid', color:'lightblue'}}>
+   return (  
+  const movieMap = movies.map((m) => {
+    return ( show ? (
+        <div>
+          <h1>MOVIES</h1>
           <h1>{m.name}: {m.year}</h1>
           <button onClick={() => remove(m.id)}>Delete</button>
+          <button onClick={()=>editMovies(m.id)}>Update</button>
         </div>
-      )
+      ): MovieForm) 
     })
- 
-  };
+    //  
+   )};
 
-  return (
+  return ( 
     <div className="App">
-      <MovieForm addMovie={addMovie}/>
-      <h1>MOVIES</h1>
-      <div>{renderMovies()}</div>
+      movieMap
+      <button onClick={()=>{
+            setShow(!show)
+          }}>Toggle View</button> 
+      {/* <MovieForm addMovie={addMovie}/> */}
+      <div >
+       
+        </div> 
     </div>
   );
-}
+};
 
 export default App;
+
+// onClick={()=>{
+//   setShow(!show)
+// }}
