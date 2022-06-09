@@ -13,7 +13,7 @@ const UpdateForm = (props)=>{
         } catch(err){
           console.log(err)
         }
-
+        props.setShow(true)
     }
     return (
         <div>
